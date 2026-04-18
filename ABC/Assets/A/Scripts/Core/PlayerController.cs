@@ -39,6 +39,11 @@ public class PlayerController : MonoBehaviour
         {
             currentInteractable?.OnSteal();
         }
+        if (canControl && Input.GetKeyDown(KeyCode.F) && canInteract)
+        {
+            Debug.Log("按下了 F 键，准备调用 OnInteract");
+            currentInteractable?.OnInteract();
+        }
     }
 
     void FixedUpdate()
@@ -63,6 +68,7 @@ public class PlayerController : MonoBehaviour
     {
         canInteract = true;
         currentInteractable = interactable;
+        Debug.Log($"EnterInteractRange 被调用，canInteract={canInteract}, interactable={interactable != null}");
     }
 
     public void ExitInteractRange()

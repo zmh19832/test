@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class UIMaskManager : MonoBehaviour
 {
-    public GameObject maskPanel;   // 遮罩面板（全屏半透白）
-    public Text maskText;          // 遮罩上的文字（旧版 UI）
-    // 如果用 TextMeshPro，把上面的 Text 改成 TMP_Text
+    public GameObject maskPanel;
+    public Text maskText;
 
     private bool isWaitingForSpace = false;
+    public Action OnMaskClosed;
 
     void Start()
     {
@@ -18,34 +19,65 @@ public class UIMaskManager : MonoBehaviour
     {
         if (isWaitingForSpace && Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("按下了空格，关闭遮罩");
             CloseMask();
+        }
+    }
+
+    private void EnsureReferences()
+    {
+        if (maskPanel == null)
+        {
+            maskPanel = GameObject.Find("MaskPlane");
+            if (maskPanel != null)
+            {
+                maskText = maskPanel.GetComponentInChildren<Text>();
+            }
         }
     }
 
     public void ShowMask(string message)
     {
+        EnsureReferences();
+
         if (maskPanel == null)
         {
-            Debug.LogError("UIMaskManager: maskPanel 未赋值");
+            Debug.LogError("UIMaskManager: 找不到 MaskPlane");
             return;
         }
 
+        Debug.Log("显示遮罩：" + message);
         maskPanel.SetActive(true);
         if (maskText != null) maskText.text = message;
         isWaitingForSpace = true;
 
-        // 禁用玩家控制
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null) player.GetComponent<PlayerController>().DisableControl();
+        if (player != null)
+        {
+            PlayerController pc = player.GetComponent<PlayerController>();
+            if (pc != null) pc.DisableControl();
+        }
     }
 
     public void CloseMask()
     {
+        Debug.Log("关闭遮罩");
         if (maskPanel != null) maskPanel.SetActive(false);
         isWaitingForSpace = false;
 
-        // 恢复玩家控制
+        OnMaskClosed?.Invoke();
+        OnMaskClosed = null;
+
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null) player.GetComponent<PlayerController>().EnableControl();
+        if (player != null)
+        {
+            PlayerController pc = player.GetComponent<PlayerController>();
+            if (pc != null) pc.EnableControl();
+        }
+    }
+
+    public bool IsMaskActive()
+    {
+        return maskPanel != null && maskPanel.activeSelf;
     }
 }

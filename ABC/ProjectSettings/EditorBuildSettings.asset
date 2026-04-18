@@ -6,9 +6,33 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/A/tex.unity
-    guid: f810e058dfa225c4e8be0a3a0391cb3c
+    path: Assets/A/Scene/Scene_Lobby.unity
+    guid: 53da2c814beba11479d4dfb981f15681
   - enabled: 1
-    path: Assets/A/Scene2.unity
-    guid: 867526a0408408d43a90b4d7af751221
+    path: Assets/A/Scene/Scene_Office307.unity
+    guid: e661e9fdc037f62419ba62343cec6f6e
+  - enabled: 1
+    path: Assets/A/Scene/N_Sce_Corridor.unity
+    guid: 622e7a1180d75b34199c61f162364e19
+  - enabled: 1
+    path: Assets/A/Scene/N_Sce_ChenOffice.unity
+    guid: c2aff9f72065b7347b621063a2ef9817
+  - enabled: 1
+    path: Assets/A/Scene/N_Sce_Office304.unity
+    guid: 1ff85a70d54559343aaa2df138621206
+  - enabled: 1
+    path: Assets/A/Scene/N_Sce_Lobby.unity
+    guid: 8912ed64e2a88554baaebfe39fa7bd02
+  - enabled: 1
+    path: Assets/A/Scene/N_Sce_Office307.unity
+    guid: c9e2319a74101264cb60c9869ab4e750
+  - enabled: 1
+    path: Assets/A/Scene/Scene_ChenOffice.unity
+    guid: d59614334ba64414ea0e59e7f246d808
+  - enabled: 1
+    path: Assets/A/Scene/Scene_Corridor.unity
+    guid: b1086e0c66f411f469170981696a127c
+  - enabled: 1
+    path: Assets/A/Scene/Scene_Office304.unity
+    guid: 8b39a1bb83e169244818b4d5dd1adb17
   m_configObjects: {}

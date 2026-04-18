@@ -28,4 +28,19 @@ public class GameStateManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    void Update()
+    {
+        // 调试快捷键：按数字键 1-9 设置主线进度
+        if (Input.GetKeyDown(KeyCode.Alpha1)) mainQuestStep = 1;
+        if (Input.GetKeyDown(KeyCode.Alpha2)) mainQuestStep = 2;
+        if (Input.GetKeyDown(KeyCode.Alpha3)) mainQuestStep = 3;
+        if (Input.GetKeyDown(KeyCode.Alpha4)) mainQuestStep = 4;
+        if (Input.GetKeyDown(KeyCode.Alpha5)) mainQuestStep = 5;
+        if (Input.GetKeyDown(KeyCode.Alpha6)) mainQuestStep = 6;
+        if (Input.GetKeyDown(KeyCode.Alpha7)) mainQuestStep = 7;
+        if (Input.GetKeyDown(KeyCode.Alpha8)) mainQuestStep = 8;
+        if (Input.GetKeyDown(KeyCode.Alpha9)) mainQuestStep = 9;
+
+        if (Input.GetKeyDown(KeyCode.Alpha0)) mainQuestStep = 0;
+    }
 }
